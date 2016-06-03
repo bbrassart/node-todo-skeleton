@@ -1,0 +1,5 @@
+<div class="checkbox" ng-repeat="todo in vm.todos">
+    <label>
+        <input type="checkbox" ng-click="vm.delete(todo._id)"> {{ todo.text }}
+    </label>
+</div>

@@ -6,11 +6,7 @@
     <div id="todo-list" class="row">
         <div class="col-sm-4 col-sm-offset-4">
 
-            <div class="checkbox" ng-repeat="todo in vm.todos">
-                <label>
-                    <input type="checkbox" ng-click="vm.deleteTodo(todo._id)"> {{ todo.text }}
-                </label>
-            </div>
+            <itemsscreen object="vm.object" items="vm.items"></itemsscreen>
 
             <p class="text-center" ng-show="vm.loading">
                 <span class="fa fa-spinner fa-spin fa-3x"></span>
