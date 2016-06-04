@@ -1,50 +1,49 @@
-angular.module('appDirectives', [])
+app.directive('mainscreen', ['taskApiService', function(taskApiService) {
 
-    .directive('mainscreen', ['taskApiService', function(taskApiService) {
-
-        ctrl = function() {
-            var self = this;
-            self.formData = {};
-            self.loading = true;
-
-            // GET =====================================================================
+    ctrl = function() {
+        var self = this;
+        self.formData = {};
+        self.loading = true;
+        self.init = function() {
             taskApiService.get()
                 .success(function(data) {
                     self.todos = data;
                     self.loading = false;
                 })
+        };
+        self.init();
 
-            // CREATE ==================================================================
-            self.createTodo = function() {
-                if (self.formData.text != undefined) {
-                    self.loading = true;
 
-                    taskApiService.create(self.formData)
-                        .success(function(data) {
-                            self.loading = false;
-                            self.formData = {};
-                            self.todos = data;
-                        })
-                }
-            }
-            // DELETE ==================================================================
-
-            self.deleteTodo = function(id) {
+        self.createTodo = function() {
+            if (self.formData.text != undefined) {
                 self.loading = true;
 
-                taskApiService.delete(id)
-                    .success(function (data) {
+                taskApiService.create(self.formData)
+                    .success(function(data) {
                         self.loading = false;
+                        self.formData = {};
                         self.todos = data;
                     })
             }
         }
 
-        return {
-            scope: {},
-            bindToController: {},
-            controller: ctrl,
-            controllerAs: 'vm',
-            templateUrl: 'templates/_mainScreen.html'
-        };
-    }]);
+        self.deleteTodo = function(id) {
+            self.loading = true;
+
+            taskApiService.delete(id)
+                .success(function (data) {
+                    self.loading = false;
+                    self.todos = data;
+                })
+        }
+    }
+
+    return {
+        restrict: "E",
+        scope: {},
+        bindToController: true,
+        controller: ctrl,
+        controllerAs: 'vm',
+        templateUrl: 'templates/_mainScreen.html'
+    };
+}]);

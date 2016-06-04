@@ -1,1 +1,1 @@
-angular.module('myTodoApp', ['appDirectives', 'appServices']);
+var app = angular.module('myTodoApp', []);
