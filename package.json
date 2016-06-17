@@ -1,5 +1,5 @@
 {
-  "name": "my-todo-app",
+  "name": "node-todo-skeleton",
   "version": "0.0.1",
   "description": "Simple todo application.",
   "main": "server.js",

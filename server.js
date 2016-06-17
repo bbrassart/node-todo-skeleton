@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 
-mongoose.connect(database.localUrl);
+mongoose.connect(database.mLabDatabase);
 
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
@@ -23,4 +23,3 @@ require('./app/routes.js')(app);
 
 // listen (start app with node server.js) ======================================
 app.listen(port);
-console.log("App listening on port " + port);
