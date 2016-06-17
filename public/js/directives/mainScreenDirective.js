@@ -1,52 +1,47 @@
-angular.module('myTodoApp.directives')
+app.directive('mainscreen', ['mainService', function(mainService) {
 
-.directive('mainscreen', ['mainService', function(mainService) {
-    ctrl = [function() {
-        var self;
-        self = this;
+    ctrl = function() {
+        var self = this;
         self.formData = {};
-        self.object = {
-            name: "item"
-        };
-        self.todos = [];
-
         self.loading = true;
-        allTodos = mainService.getTodos();
-        allTodos.$promise.then( function(data) {
-            self.todos = data;
-            self.loading = false;
-        });
 
-        // CREATE ==================================================================
+        self.init = function() {
+            todos = mainService.getTodos();
+            todos.$promise.then(function(data) {
+                self.todos = data;
+                self.loading = false;
+            });
+        };
+        self.init();
+
+
         self.createTodo = function() {
             if (self.formData.text != undefined) {
                 self.loading = true;
-
-                taskApiService.create(self.formData)
-                    .success(function(data) {
-                        self.loading = false;
-                        self.formData = {};
-                        self.todos = data;
-                    })
+                newTodo = mainService.createTodo(self.formData);
+                newTodo.$promise.then(function(data) {
+                    self.loading = false;
+                    self.formData = {};
+                    self.todos = data;
+                });
             }
-        }
-        // DELETE ==================================================================
+        };
 
         self.deleteTodo = function(id) {
             self.loading = true;
 
-            taskApiService.delete(id)
-                .success(function (data) {
-                    self.loading = false;
-                    self.todos = data;
-                })
-        };
-        return self;
-    }];
+            deletedTodo = mainService.deleteTodo(id);
+            deletedTodo.$promise.then(function(data) {
+                self.loading = false;
+                self.todos = data;
+            });
+        }
+    }
 
     return {
-        bindToController: true,
+        restrict: "E",
         scope: {},
+        bindToController: true,
         controller: ctrl,
         controllerAs: 'vm',
         templateUrl: 'templates/_mainScreen.html'

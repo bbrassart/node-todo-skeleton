@@ -6,7 +6,7 @@
     <div id="todo-list" class="row">
         <div class="col-sm-4 col-sm-offset-4">
 
-            <itemsscreen object="vm.object" items="vm.items"></itemsscreen>
+            <grid items="vm.todos" delete-todo="vm.deleteTodo(id)"></grid>
 
             <p class="text-center" ng-show="vm.loading">
                 <span class="fa fa-spinner fa-spin fa-3x"></span>
