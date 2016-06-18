@@ -1,6 +1,7 @@
 app.directive('mainscreen', ['mainService', function(mainService) {
 
     ctrl = function() {
+
         var self = this;
         self.formData = {};
         self.loading = true;

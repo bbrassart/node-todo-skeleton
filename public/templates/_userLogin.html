@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>TodoIst App</h1>
+    </div>
+    <h3>Sign in</h3>
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control input-lg text-center" placeholder="Email" ng-model="vm.userData.email">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control input-lg text-center" placeholder="Password" ng-model="vm.userData.password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="vm.authenticateUser()">Sign in</button>
+    </form>
+
+    <h3>Sign up</h3>
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control input-lg text-center" placeholder="Email" ng-model="vm.newUserData.email">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control input-lg text-center" placeholder="Password" ng-model="vm.newUserData.password">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control input-lg text-center" placeholder="Password" ng-model="vm.newUserData.passwordConfirmation">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="vm.createUser()">Create a new account</button>
+    </form>
+
+</div>

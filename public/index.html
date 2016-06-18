@@ -16,8 +16,10 @@
 
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
 	<script src="js/core.js"></script>
 	<script src="js/directives/mainScreenDirective.js"></script>
+	<script src="js/directives/userLoginDirective.js"></script>
 	<script src="js/directives/gridDirective.js"></script>
 	<script src="js/services/apiService.js"></script>
 	<script src="js/services/todoApiService.js"></script>
@@ -26,6 +28,10 @@
 </head>
 
 <body>
-	<mainscreen></mainscreen>
+
+	<div class="ui-view-container">
+		<div ui-view></div>
+	</div>
+
 </body>
 </html>
