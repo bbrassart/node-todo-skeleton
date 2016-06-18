@@ -1,4 +1,4 @@
-app.directive('userlogin', ['mainService', function(mainService) {
+app.directive('userlogin', ['mainService', 'routingService', function(mainService, routingService) {
 
     ctrl = function() {
 
@@ -7,7 +7,7 @@ app.directive('userlogin', ['mainService', function(mainService) {
         self.userData = {};
         self.authenticateUser = function() {
             if (self.userData.password != undefined && self.userData.email != undefined) {
-                debugger;
+                routingService.goTo('mainScreen');
             }
         };
         return self;
