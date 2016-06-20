@@ -1,14 +1,23 @@
 var app = angular.module('myTodoApp', ['ngResource', 'ui.router']);
 
-app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+app.config(['$stateProvider', function($stateProvider) {
     $stateProvider
         .state('userLogin', {
-            url: "/login",
-            template: '<userlogin></userlogin>'
+            views: {
+                "screen-container": {
+                    template: "<userlogin></userlogin>"
+                }
+            }
         })
         .state('mainScreen', {
-            url: "/",
-            template: '<mainscreen></mainscreen>'
+            views: {
+                "screen-container": {
+                    template: "<mainscreen></mainscreen>"
+                }
+            }
         });
-    $urlRouterProvider.otherwise('/login');
+}]);
+
+app.run(["$state", function($state) {
+    $state.go("userLogin");
 }]);
